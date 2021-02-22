@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import styled from 'styled-components/macro'
 import Player from './Player'
 import PlayerForm from './PlayerForm'
 
@@ -7,7 +7,7 @@ function App() {
   const [players, setPlayers] = useState([])
 
   return (
-    <div className="App">
+    <AppWrapper>
       <PlayerForm onAddPlayer={addPlayer} />
       {players.map(({ name, score, id }, index) => (
         <Player
@@ -20,7 +20,7 @@ function App() {
       ))}
       <button onClick={resetScores}>Reset scores</button>
       <button onClick={resetAll}>Reset all</button>
-    </div>
+    </AppWrapper>
   )
 
   function onPlus(index) {
@@ -53,3 +53,9 @@ function App() {
 }
 
 export default App
+
+const AppWrapper = styled.div`
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+`
