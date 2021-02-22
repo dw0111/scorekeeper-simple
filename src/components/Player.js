@@ -1,8 +1,10 @@
 import styled from 'styled-components/macro'
 
 export default function Player({ name, score, onMinus, onPlus }) {
+  const hue = Math.min(score * 10, 100)
+
   return (
-    <PlayerWrapper>
+    <PlayerWrapper bgColor={`hsl(${hue}, 50%, 50%)`}>
       {name}
       <PlayerScore>
         <button onClick={onMinus}>-</button>
@@ -17,6 +19,7 @@ const PlayerWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: ${props => props.bgColor || 'white'};
 `
 const PlayerScore = styled.div`
   display: grid;
