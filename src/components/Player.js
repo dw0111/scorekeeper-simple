@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import Button from './Button'
 
 export default function Player({ name, score, onMinus, onPlus }) {
   const hue = Math.min(score * 10, 100)
@@ -7,9 +8,9 @@ export default function Player({ name, score, onMinus, onPlus }) {
     <PlayerWrapper bgColor={`hsl(${hue}, 50%, 50%)`}>
       {name}
       <PlayerScore>
-        <button onClick={onMinus}>-</button>
+        <Button onClick={onMinus}>-</Button>
         <span>{score}</span>
-        <button onClick={onPlus}>+</button>
+        <Button onClick={onPlus}>+</Button>
       </PlayerScore>
     </PlayerWrapper>
   )

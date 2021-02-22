@@ -63,8 +63,8 @@ const AppWrapper = styled.div`
   padding: 20px;
 `
 const ResetAllButton = styled(Button)`
-  background-color: red;
-  border: 1px solid mistyrose;
+  background-color: mistyrose;
+  border: 1px solid red;
 `
 const ButtonWrapper = styled.div`
   display: grid;
