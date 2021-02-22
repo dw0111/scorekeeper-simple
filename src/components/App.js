@@ -4,60 +4,60 @@ import Button from './Button'
 import Player from './Player'
 import PlayerForm from './PlayerForm'
 
-function App() {
+export default function App() {
   const [players, setPlayers] = useState([])
 
   return (
-    <AppWrapper>
-      <PlayerForm onAddPlayer={addPlayer} />
-      {players.map(({ name, score, id }, index) => (
+    <AppLayout>
+      <PlayerForm onAddPlayer={handleAddPlayer} />
+      {players.map(({ name, score }, index) => (
         <Player
-          key={id}
+          key={name}
           name={name}
           score={score}
-          onPlus={() => onPlus(index)}
-          onMinus={() => onMinus(index)}
+          onPlus={() => handlePlus(index)}
+          onMinus={() => handleMinus(index)}
         />
       ))}
-      <ButtonWrapper>
+      <ButtonGrid>
         <Button onClick={resetScores}>Reset scores</Button>
         <DangerButton onClick={resetAll}>Reset all</DangerButton>
-      </ButtonWrapper>
-    </AppWrapper>
+      </ButtonGrid>
+    </AppLayout>
   )
 
-  function onPlus(index) {
-    setPlayers(players => [
-      ...players.slice(0, index),
-      { ...players[index], score: players[index].score + 1 },
-      ...players.slice(index + 1),
-    ])
+  function handleAddPlayer(name) {
+    setPlayers(oldPlayers => [...oldPlayers, { name, score: 0 }])
   }
 
-  function onMinus(index) {
-    setPlayers(players => [
-      ...players.slice(0, index),
-      { ...players[index], score: players[index].score - 1 },
-      ...players.slice(index + 1),
-    ])
-  }
-
-  function addPlayer(name) {
-    setPlayers([...players, { name, score: 0, id: players.length + 1 }])
+  function resetAll() {
+    setPlayers([])
   }
 
   function resetScores() {
     setPlayers(players.map(player => ({ ...player, score: 0 })))
   }
 
-  function resetAll() {
-    setPlayers([])
+  function handlePlus(index) {
+    const currentPlayer = players[index]
+    setPlayers([
+      ...players.slice(0, index),
+      { ...currentPlayer, score: currentPlayer.score + 1 },
+      ...players.slice(index + 1),
+    ])
+  }
+
+  function handleMinus(index) {
+    const currentPlayer = players[index]
+    setPlayers([
+      ...players.slice(0, index),
+      { ...currentPlayer, score: currentPlayer.score - 1 },
+      ...players.slice(index + 1),
+    ])
   }
 }
 
-export default App
-
-const AppWrapper = styled.div`
+const AppLayout = styled.div`
   display: grid;
   gap: 20px;
   padding: 20px;
@@ -66,7 +66,7 @@ const DangerButton = styled(Button)`
   background-color: mistyrose;
   border: 1px solid red;
 `
-const ButtonWrapper = styled.div`
+const ButtonGrid = styled.div`
   display: grid;
   gap: 5px;
   grid-template-columns: 1fr 1fr;
