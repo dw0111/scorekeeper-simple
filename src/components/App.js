@@ -21,7 +21,7 @@ function App() {
       ))}
       <ButtonWrapper>
         <Button onClick={resetScores}>Reset scores</Button>
-        <ResetAllButton onClick={resetAll}>Reset all</ResetAllButton>
+        <DangerButton onClick={resetAll}>Reset all</DangerButton>
       </ButtonWrapper>
     </AppWrapper>
   )
@@ -62,12 +62,12 @@ const AppWrapper = styled.div`
   gap: 20px;
   padding: 20px;
 `
-const ResetAllButton = styled(Button)`
+const DangerButton = styled(Button)`
   background-color: mistyrose;
   border: 1px solid red;
 `
 const ButtonWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 5px;
+  grid-template-columns: 1fr 1fr;
 `

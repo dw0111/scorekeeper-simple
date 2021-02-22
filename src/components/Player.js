@@ -2,12 +2,12 @@ import styled from 'styled-components/macro'
 import Button from './Button'
 
 export default function Player({ name, score, onMinus, onPlus }) {
-  const hue = Math.min(score * 10, 100)
+  const hue = Math.min(score * 10, 120)
 
   return (
-    <PlayerWrapper bgColor={`hsl(${hue}, 50%, 50%)`}>
+    <PlayerWrapper>
       {name}
-      <PlayerScore>
+      <PlayerScore color={`hsl(${hue}, 50%, 50%)`}>
         <Button onClick={onMinus}>-</Button>
         <span>{score}</span>
         <Button onClick={onPlus}>+</Button>
@@ -20,9 +20,9 @@ const PlayerWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${props => props.bgColor || 'white'};
 `
 const PlayerScore = styled.div`
+  color: ${props => props.color || 'black'};
   display: grid;
   gap: 5px;
   grid-template-columns: repeat(3, 1fr);
