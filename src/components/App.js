@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
+import Button from './Button'
 import Player from './Player'
 import PlayerForm from './PlayerForm'
 
@@ -18,8 +19,10 @@ function App() {
           onMinus={() => onMinus(index)}
         />
       ))}
-      <button onClick={resetScores}>Reset scores</button>
-      <button onClick={resetAll}>Reset all</button>
+      <ButtonWrapper>
+        <Button onClick={resetScores}>Reset scores</Button>
+        <ResetAllButton onClick={resetAll}>Reset all</ResetAllButton>
+      </ButtonWrapper>
     </AppWrapper>
   )
 
@@ -58,4 +61,13 @@ const AppWrapper = styled.div`
   display: grid;
   gap: 20px;
   padding: 20px;
+`
+const ResetAllButton = styled(Button)`
+  background-color: red;
+  border: 1px solid mistyrose;
+`
+const ButtonWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
 `
