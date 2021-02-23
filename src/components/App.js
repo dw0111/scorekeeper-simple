@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import styled from 'styled-components/macro'
 import Button from './Button'
 import Player from './Player'
 import PlayerForm from './PlayerForm'
@@ -38,7 +38,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <AppGrid className="App">
       <PlayerForm onAddPlayer={handleAddPlayer} />
       {players.map((player, index) => (
         <Player
@@ -51,8 +51,14 @@ function App() {
 
       <Button text="Reset scores" onClick={resetScore}></Button>
       <Button text="Reset all" onClick={resetAll}></Button>
-    </div>
+    </AppGrid>
   )
 }
 
 export default App
+
+const AppGrid = styled.div`
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+`

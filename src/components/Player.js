@@ -1,14 +1,27 @@
-import './Player.css'
+import styled from 'styled-components/macro'
 
 export default function Player({ name, score, onMinus, onPlus }) {
   return (
-    <section className="Player">
+    <PlayerSection className="Player">
       {name}
-      <div className="Player__score">
+      <ScoreDiv className="Player__score">
         <button onClick={onMinus}>-</button>
         <span>{score}</span>
         <button onClick={onPlus}>+</button>
-      </div>
-    </section>
+      </ScoreDiv>
+    </PlayerSection>
   )
 }
+
+const PlayerSection = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const ScoreDiv = styled.div`
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+`
