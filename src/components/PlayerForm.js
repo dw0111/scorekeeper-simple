@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export default function PlayerForm({ onAddPlayer }) {
   return (
-    <Form className="PlayerForm" onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <label>
         Add player:
         <br />

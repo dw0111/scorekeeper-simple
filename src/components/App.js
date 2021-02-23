@@ -38,7 +38,7 @@ function App() {
   }
 
   return (
-    <AppGrid className="App">
+    <AppGrid>
       <PlayerForm onAddPlayer={handleAddPlayer} />
       {players.map((player, index) => (
         <Player
@@ -46,6 +46,7 @@ function App() {
           score={player.score}
           onPlus={() => handlePlus(index)}
           onMinus={() => handleMinus(index)}
+          key={player.name}
         />
       ))}
 
